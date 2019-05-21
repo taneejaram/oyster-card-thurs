@@ -23,11 +23,13 @@ describe OysterCard do
     expect{oyster_card.top_up(1)}.to raise_error "Top up limit exceeded"
   end
 
-  it 'can deduct a fare from the card' do
-    oyster_card = OysterCard.new
-    oyster_card.top_up(OysterCard::DEFAULT_LIMIT)
-    expect(oyster_card.deduct(90)).to eq(0)
-  end
+  # it 'can deduct a fare from the card' do
+  #   oyster_card = OysterCard.new
+  #   oyster_card.top_up(OysterCard::DEFAULT_LIMIT)
+  #   oyster_card.touch_out(90)
+
+  #   expect(oyster_card.balance).to eq(0)
+  # end
 
   it 'can touch in at a barrier' do
     oyster_card = OysterCard.new
@@ -38,13 +40,19 @@ describe OysterCard do
 
   it 'can touch out' do
     oyster_card = OysterCard.new
-    oyster_card.touch_out
+    oyster_card.touch_out(2)
     expect(oyster_card.in_journey).to be false
   end
 
   it 'needs a minimum of £1' do
     oyster_card = OysterCard.new
     expect{oyster_card.touch_in}.to raise_error "You need a minimum of £1"
+  end
+
+  it 'will deduct a fare when you complete a journey' do
+    oyster_card = OysterCard.new
+    oyster_card.top_up(10)
+    expect{ oyster_card.touch_out(2) }.to change { oyster_card.balance }.by(-2)
   end
 
 end

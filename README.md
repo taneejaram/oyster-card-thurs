@@ -34,3 +34,8 @@ In order to get through the barriers.
 As a customer
 I need to touch in and out.
 ```
+```
+In order to pay for my journey
+As a customer
+When my journey is complete, I need the correct amount deducted from my card
+```
