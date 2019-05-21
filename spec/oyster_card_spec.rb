@@ -36,7 +36,7 @@ describe OysterCard do
     oyster_card.touch_in(Bow Road)
     expect(oyster_card.in_journey")
     this_should_not_be_executed
-    
+
   end
 
   it 'can touch out' do
@@ -71,5 +71,15 @@ describe OysterCard do
     oyster_card.touch_out(2)
     expect(oyster_card.entry_station).to eq(nil)
   end
+
+  it 'remembers the exit station on touch out' do
+    oyster_card = OysterCard.new
+    oyster_card.top_up(10)
+    oyster_card.touch_in("Barbican")
+    oyster_card.touch_out(2, "Bow Road")
+    expect(oyster_card.exit_station).to eq("Bow Road")
+  end
+
+
 
 end

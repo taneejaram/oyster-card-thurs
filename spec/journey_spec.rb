@@ -10,5 +10,9 @@ describe Journey do
     expect(journey.entry_station).to eq("Barbican")
   end
 
+  it 'has an entry and exit station' do
+    journey = Journey.new
+    
+  end
 
 end
