@@ -27,14 +27,13 @@ describe OysterCard do
   #   oyster_card = OysterCard.new
   #   oyster_card.top_up(OysterCard::DEFAULT_LIMIT)
   #   oyster_card.touch_out(90)
-
   #   expect(oyster_card.balance).to eq(0)
   # end
 
   it 'can touch in at a barrier' do
     oyster_card = OysterCard.new
     oyster_card.top_up(5)
-    oyster_card.touch_in
+    oyster_card.touch_in("Bow Road")
     expect(oyster_card.in_journey).to be true
   end
 
@@ -46,13 +45,20 @@ describe OysterCard do
 
   it 'needs a minimum of £1' do
     oyster_card = OysterCard.new
-    expect{oyster_card.touch_in}.to raise_error "You need a minimum of £1"
+    expect{oyster_card.touch_in("Bow Road")}.to raise_error "You need a minimum of £1"
   end
 
   it 'will deduct a fare when you complete a journey' do
     oyster_card = OysterCard.new
     oyster_card.top_up(10)
     expect{ oyster_card.touch_out(2) }.to change { oyster_card.balance }.by(-2)
+  end
+
+  it 'remembers the entry station after touch in' do
+    oyster_card =OysterCard.new
+    oyster_card.top_up(10)
+    oyster_card.touch_in("Barbican")
+    expect(oyster_card.entry_station).to eq("Barbican")
   end
 
 end
