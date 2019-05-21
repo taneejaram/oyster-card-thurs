@@ -29,9 +29,8 @@ describe OysterCard do
     expect(oyster_card.deduct(90)).to eq(oyster_card.balance)
   end
 
-  it 'can be touched in' do
+  it 'can touch in at a barrier' do
     oyster_card = OysterCard.new
-    expect(oyster_card.touch_in).to eq(true)
   end
 
 end
