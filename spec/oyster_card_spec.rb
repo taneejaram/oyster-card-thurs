@@ -31,6 +31,14 @@ describe OysterCard do
 
   it 'can touch in at a barrier' do
     oyster_card = OysterCard.new
+    oyster_card.touch_in
+    expect(oyster_card.in_journey).to be true 
+  end
+
+  it 'can touch out' do
+    oyster_card = OysterCard.new
+    oyster_card.touch_out
+    expect(oyster_card.in_journey).to be false
   end
 
 end
