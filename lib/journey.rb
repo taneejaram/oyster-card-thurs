@@ -9,4 +9,10 @@ class Journey
     @exit_station = exit_station
   end
 
+  def complete?
+    if @entry_station != nil && @exit_station != nil
+      true
+    end
+  end
+
 end

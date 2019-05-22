@@ -4,7 +4,8 @@ describe OysterCard do
 
   let(:entry_station) { double(:station) }
   let(:exit_station) { double(:station) }
-  let(:oyster_card) { OysterCard.new }
+  let(:journey) { double(:journey).as_null_object }
+  let(:oyster_card) { OysterCard.new(journey) }
 
   it 'can get the current balance on the oyster card' do
     oyster_card.top_up(10)
@@ -64,6 +65,13 @@ describe OysterCard do
     oyster_card.touch_in(entry_station)
     oyster_card.touch_out(2, exit_station)
     expect(oyster_card.journeys).to eq([{:entry_station => entry_station, :exit_station => exit_station}])
+  end
+
+  it 'stores a list of journeys2' do
+    oyster_card.top_up(10)
+    oyster_card.touch_in(entry_station)
+    oyster_card.touch_out(2, exit_station)
+    expect(oyster_card.journeys2).to eq([journey])
   end
 
 end

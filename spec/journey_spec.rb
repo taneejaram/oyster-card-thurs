@@ -20,4 +20,6 @@ describe Journey do
     journey.stop(exit_station)
     expect(journey).to be_complete
   end
+
+
 end
