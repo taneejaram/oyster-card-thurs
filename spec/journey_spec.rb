@@ -21,5 +21,15 @@ describe Journey do
     expect(journey).to be_complete
   end
 
+  it 'has an empty list of journeys by default' do
+    expect(journey.journeys).to eq([])
+  end
+
+  it 'stores the journey in a journeys array' do
+    journey.start(entry_station)
+    journey.stop(exit_station)
+    journey.store_journey
+    expect(journey.journeys).to eq([{:entry_station => entry_station, :exit_station => exit_station}])
+  end
 
 end
